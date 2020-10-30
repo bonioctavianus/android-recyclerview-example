@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class CountryAdapter : RecyclerView.Adapter<CountryViewHolder>() {
+class CountryAdapter(
+    private val clickListener: ((Country) -> Unit)
+) : RecyclerView.Adapter<CountryViewHolder>() {
 
     private val mItems: MutableList<Country> = mutableListOf()
 
@@ -12,7 +14,7 @@ class CountryAdapter : RecyclerView.Adapter<CountryViewHolder>() {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_row_country, parent, false)
 
-        return CountryViewHolder(view)
+        return CountryViewHolder(view, clickListener)
     }
 
     override fun getItemCount(): Int = mItems.size

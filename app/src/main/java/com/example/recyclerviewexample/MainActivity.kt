@@ -1,6 +1,7 @@
 package com.example.recyclerviewexample
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,7 +14,9 @@ class MainActivity : AppCompatActivity() {
 
         rv_country.layoutManager = LinearLayoutManager(this)
 
-        val adapter = CountryAdapter()
+        val adapter = CountryAdapter { country ->
+            Toast.makeText(this, country.name, Toast.LENGTH_SHORT).show()
+        }
 
         rv_country.adapter = adapter
 
